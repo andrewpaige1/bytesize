@@ -2,111 +2,113 @@
 
 {% block body %}
 <div class="level-item">
-<h1 class="is-size-1">byte page</h1>
+<h1 class="is-size-1">reducer</h1>
 </div>
 
-
-<div class="field">
-    <label class="label">Name</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Text input">
-    </div>
-  </div>
-  
-  <div class="field">
-    <label class="label">Username</label>
-    <div class="control has-icons-left has-icons-right">
-      <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-      <span class="icon is-small is-left">
-        <i class="fas fa-user"></i>
-      </span>
-      <span class="icon is-small is-right">
-        <i class="fas fa-check"></i>
-      </span>
-    </div>
-    <p class="help is-success">This username is available</p>
-  </div>
-  
-  <div class="field">
-    <label class="label">Email</label>
-    <div class="control has-icons-left has-icons-right">
-      <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-      <span class="icon is-small is-left">
-        <i class="fas fa-envelope"></i>
-      </span>
-      <span class="icon is-small is-right">
-        <i class="fas fa-exclamation-triangle"></i>
-      </span>
-    </div>
-    <p class="help is-danger">This email is invalid</p>
-  </div>
-  
-  <div class="field">
-    <label class="label">Subject</label>
-    <div class="control">
-      <div class="select">
-        <select>
-          <option>Select dropdown</option>
-          <option>With options</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  
-  <div class="field">
-    <label class="label">Message</label>
-    <div class="control">
-      <textarea class="textarea" placeholder="Textarea"></textarea>
-    </div>
-  </div>
-  
-  <div class="field">
-    <div class="control">
-      <label class="checkbox">
-        <input type="checkbox">
-        I agree to the <a href="#">terms and conditions</a>
-      </label>
-    </div>
-  </div>
-  
-  <div class="field">
-    <div class="control">
-      <label class="radio">
-        <input type="radio" name="question">
-        Yes
-      </label>
-      <label class="radio">
-        <input type="radio" name="question">
-        No
-      </label>
-    </div>
-  </div>
 
 <div class="level-item">
-<div class="field">
-    <p class="control has-icons-left">
-      <span class="select">
-        <select>
-          <option selected>Country</option>
-          <option>Select dropdown</option>
-          <option>With options</option>
-        </select>
-      </span>
-      <span class="icon is-small is-left">
-        <i class="fas fa-globe"></i>
-      </span>
-    </p>
-  </div>
+  <form name="reducer" method=POST>
+      <div class="field">
+          <label>Enter amount of calories</label>
+          <input type="text" name="calories" class="input" name="calories" placeholder="calories">
+      </div>
+      <div class="level-item">
+        <button type="submit" class="button is-primary">submit</button>
+      </div>
+  </form>
+  <br>
 </div>
-  <div class="field is-grouped">
-    <div class="control">
-      <button class="button is-link">Submit</button>
-    </div>
-    <div class="control">
-      <button class="button is-link is-light">Cancel</button>
-    </div>
-  </div>
 
+<div class="level-item">
+  <p id="recommendation" class="has-text-danger is-size-4"></p>
+</div>
+
+  <script>
+    const reduceCalories = (calories) => {
+    var portion = 0;
+    let subCal = 0
+    //console.log(portion)
+    var holding = ""
+    if(isNaN(calories)){
+      holding = "please enter a valid number"
+      return holding
+    }
+
+    if(calories <= 700){
+      //portion += calories;
+      portion = 0
+      //console.log(portion)
+  
+      //console.log("This ran " + timesRan + " times")
+      //return portion;
+    }
+
+  
+    while(calories >= 700){
+      
+        calories -= 1;
+        portion += 1;
+      
+    }
+    subCal -= 1
+    if (portion <= 2500 && portion >= 1401) {
+      holding = "You " + " should have a quarter of the meal"
+      //  AsyncStorage.setItem('holding', holding);
+  
+    //  return holding;
+    } else if (portion <= 1400 && portion >= 801) {
+      holding = "You " + " should have a quarter of the meal"
+     //   AsyncStorage.setItem('holding', holding);
+  
+    
+    } else if (portion <= 800 && portion >= 401) {
+      holding = "You " + " should have half of the meal"
+      //  AsyncStorage.setItem('holding', holding);
+  
+      //return holding;
+    }else if (portion <= 400 && portion >= 101) {
+       holding = "You " + " should have a little more than half the meal";
+        // AsyncStorage.setItem('holding', holding);
+  
+     // return holding;
+    }else if (portion <= 100 && portion >= 0) {
+      holding = "You " + " can have the full meal";
+      //  AsyncStorage.setItem('holding', holding);
+  
+   //   return holding;
+    } else {
+      holding = "The meal is too big"
+      // AsyncStorage.setItem('holding', holding);
+  
+    //  return holding;
+      
+    }
+    //return subCal-1
+    return holding
+  }
+
+  const handleReducer = () => {
+  //  var x = document.forms["myForm"]["fname"].value;
+
+  }
+
+
+  const reducer = document.querySelector('form')
+    reducer.addEventListener('submit', event => {
+     event.preventDefault()
+     calories = document.forms["reducer"]["calories"].value;
+     calories = +calories
+     result = reduceCalories(calories)
+     document.getElementById("recommendation").innerHTML = result;
+
+})
+
+
+
+
+  
+
+  </script>
 
 
 
