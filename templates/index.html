@@ -5,22 +5,37 @@
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 
-<title>bytesize</title>
+        <title>bytesize</title>
     </head>
+  <div class="container">
+  <div class="level">
+      <div class="column">
+        <div class="level-item">
+          <h1 class="is-size-1">bytesize</h1>
+      </div>
+      <div class="level-item">
+          <h2 class="is-size-3">login</h2>
+      </div>
 
+        <div class="level-item">
+          <form method=POST action="{{ url_for('login') }}">
+              <div class="field">
+                  <label>Username</label>
+                  <input type="text" class="input" name="username" placeholder="Username">
+              </div>
 
-    <body>
-      <ul>
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
-    <li><a href="/">home</a></li>
-    <li><a href="/reducer">reducer</a></li>
-    <li><a href="/join">join</a></li>
-    </ul>
-
-
-    {% block body %}
-    {% endblock %}
-
-
-    </body>
-</html>
+              <div class="field">
+                  <label>Password</label>
+                  <input type="password" class="input" name="pass" placeholder="Password">
+              </div>
+              
+              <button type="submit" class="button is-primary">Log In</button>
+          </form>
+        </div>
+          <br>
+          <div class="level-item">
+              Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a>.
+          </div>
+      </div>
+  </div>
+</div>
