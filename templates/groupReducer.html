@@ -1,0 +1,32 @@
+{% extends "menu.html" %}
+
+{% block body %}
+
+<div class="level-item">
+    <h1 class="is-size-1">reducer</h1>
+    </div>
+    
+    
+    <div class="level-item">
+      <form method=POST action="{{ url_for('group_reducer', id=id) }}">
+          <div class="field">
+              <label>Enter meal name</label>
+              <input type="text" class="input" name="mealName" placeholder="meal name">
+          </div>
+          <div class="field">
+            <label>Enter amount of calories</label>
+            <input type="text" class="input" name="calories" placeholder="calories">
+        </div>
+          <div class="level-item">
+            <button type="submit" class="button is-primary">submit</button>
+          </div>
+      </form>
+      <br>
+
+    </div>
+    <div class="level-item">
+      <p class="has-text-danger is-size-4">{{message}}</p>
+    </div>
+    
+
+{% endblock %}

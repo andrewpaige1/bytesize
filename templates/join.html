@@ -1,5 +1,23 @@
 {% extends "menu.html" %}
 
 {% block body %}
-<h1>join page</h1>
-{% endblock %}
+<div class="level-item">
+    <h1 class="is-size-1">join room</h1>
+    </div>
+    
+    
+    <div class="level-item">
+      <form method=GET action="{{ url_for('group') }}">
+          <div class="field">
+              <div class="level-item">
+              <label>Enter room code</label>
+              </div>
+              <input type="text" class="input" name="roomCode" placeholder="room code">
+          </div>
+          <div class="level-item">
+            <button type="submit" class="button is-primary">submit</button>
+          </div>
+      </form>
+      <br>
+    </div>
+    {% endblock %}

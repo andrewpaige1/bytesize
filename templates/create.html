@@ -1,0 +1,29 @@
+{% extends "menu.html" %}
+
+{% block body %}
+<div>
+    <div>
+    <div class="level-item">
+        <h1 class="is-size-1">create room for others to join</h1>
+    </div>
+        <div class="level-item">
+            <h2 class="is-size-3">1. create a room for others to join</h2>
+        </div>
+        <div class="level-item">
+            <h2 class="is-size-3">2. save code and share</h2>
+        </div>
+        <div class="level-item">
+            <h2 class="is-size-3">3. view amount of food everyone can have</h2>
+        </div>
+    <div class="level-item">
+    <form method="POST" action="/create">
+        <input type="submit" name="createRoom" class="button is-primary" value="create room"/>
+    </form>
+    </div>
+    <div class="level-item">
+        <p class="has-text-danger is-size-5">{{id}}</p>
+    </div>
+    </div>
+</div>
+
+{% endblock %}
