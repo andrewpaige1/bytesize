@@ -1,0 +1,31 @@
+{% extends "menu.html" %}
+
+{% block body %}
+<div>
+    <div class="level-item">
+        <h1 class="title">
+            Members
+        </h1>
+    </div>
+    {%for member in members%} 
+    <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            {{member.name}}
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            Meal Name: {{member.mealName}}
+            <br>
+            <div class="content">
+                Recommendation: {{member.rec}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%endfor%} 
+
+
+</div>
+{% endblock %}

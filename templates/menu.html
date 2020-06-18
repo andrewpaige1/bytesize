@@ -12,11 +12,11 @@
     <body>
       <ul>
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
-    <li><a href="/">home</a></li>
-    <li><a href="/reducer">reducer</a></li>
-    <li><a href="/join">join</a></li>
-    <li><a href="/create">create</a></li>
-    <li><a href="/about">about</a></li>
+    <li><a href="{{ url_for('index') }}">home</a></li>
+    <li><a href="{{ url_for('byte') }}">reducer</a></li>
+    <li><a href="{{ url_for('join') }}">join</a></li>
+    <li><a href="{{ url_for('create') }}">create</a></li>
+    <li><a href="{{ url_for('about') }}">about</a></li>
 
     </ul>
 

@@ -1,0 +1,49 @@
+{% extends "menu.html" %}
+
+{% block body %}
+<div>
+  <section  style="padding-bottom: 100%-90%;" class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        
+
+      <div class="level-item">
+        <h1 class="title">
+          bytesize
+        </h1>
+      </div>
+
+
+      <div class="level-item">
+        <h2 class="subtitle">
+          addressing food waste in a group setting
+        </h2>
+      </div>        
+
+      </div>
+    </div>
+  </section>
+  <div style="padding-bottom: 2.5%; padding-top: 1%;" class="level-item">
+    <h1 class="title">
+      My rooms
+    </h1>
+  </div>
+    {%for room in rooms%} 
+    {% if room.creator == user %}
+    <div style="padding-bottom: 100%-97.5%;" class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            {{room.id}}
+          </p>
+        </header>
+        <footer class="card-footer">
+          <a href="{{ url_for('members', room_id=room.id) }}" class="card-footer-item">View</a>
+        </footer>
+      </div>
+      {% endif %}
+    {%endfor%} 
+
+
+    
+</div>
+{% endblock %}

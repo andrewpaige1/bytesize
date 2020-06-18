@@ -4,6 +4,8 @@ import bcrypt
 import string 
 import random
 from flask_socketio import SocketIO, join_room, emit, send
+from bson.json_util import loads, dumps
+import json
 
 
 app = Flask('app')
@@ -15,8 +17,31 @@ socketio = SocketIO(app)
 @app.route('/')
 def index():
     if 'username' in session:
-        return render_template('menu.html',  user = session['username'])
+        posts = mongo.db.room
+        all_docs = posts.find({})
+        all_docs_string = dumps(all_docs)
+        all_docs2 = json.loads(all_docs_string)
+        return render_template('home.html', rooms=all_docs2, user=session['username'])
     return render_template('index.html')
+
+
+@app.route('/members/<room_id>')
+def members(room_id):
+    if 'username' in session:
+        posts = mongo.db.room
+        all_docs = posts.find_one({'id': room_id})
+        all_docs_string = dumps(all_docs)
+        all_docs2 = json.loads(all_docs_string)
+        return render_template('members.html', members=all_docs2['members'])
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 
 
 @app.route('/login', methods=['POST'])
@@ -29,7 +54,7 @@ def login():
             session['username'] = request.form['username']
             return redirect(url_for('index'))
 
-    return 'Invalid username/password combination'
+    return redirect(url_for('index'))
 
 
 
@@ -41,7 +66,7 @@ def register():
 
         if existing_user is None:
             hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-            users.insert({'name' : request.form['username'], 'password' : hashpass})
+            users.insert_one({'name' : request.form['username'], 'password' : hashpass})
             session['username'] = request.form['username']
             return redirect(url_for('index'))
         
@@ -64,9 +89,6 @@ def create_room():
     ROOMS[room] = id
     join_room(room)
     emit('join_room', {'room': room})
-
-
-
 
 
 @socketio.on('joinRoom')
@@ -126,7 +148,6 @@ def group_reducer():
 
 
     if request.method == 'POST':
-        print(request.args['id'])
         room_collection = mongo.db.room
         calories = request.form['calories']
         if calories.isnumeric():
@@ -138,7 +159,7 @@ def group_reducer():
         result = reduceCalories(calories)
         room_collection.update_one({"id": request.args['id']}, {'$push': {'members': {'name': name, 'mealName': meal_name, 'rec': result}}})
 
-        return 'Thank you for your response'
+        return redirect(url_for('index'))
     
 
 

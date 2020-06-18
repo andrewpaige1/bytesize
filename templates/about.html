@@ -1,0 +1,23 @@
+{% extends "menu.html" %}
+
+{% block body %}
+
+<div>
+    <section class="hero is-light">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+              What is bytesize?
+            </h1>
+            <h2 class="subtitle">
+              bytesize is a site that aims to reduce food waste in homes by offering a reccomendation for serving size one should eat
+            </h2>
+            <form action="/logout" method=POST>
+                <button type="submit" class="button is-danger">log out</button>
+            </form>
+          </div>
+        </div>
+      </section>
+</div>
+
+{% endblock %}
